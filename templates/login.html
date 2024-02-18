@@ -1,0 +1,21 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'sty.css' %}">
+
+<div class="app-row">
+    <div class="app">
+    <h2>login</h2>
+    {% for message in messages %}
+    <h5>{{message}}</h5>
+    {% endfor %}
+
+    <form  method="POST">
+        {% csrf_token %}
+        <p>username:</p>
+        <input type="text" name="username" id="sty">
+        <p>password:</p>
+        <input type="password" name="password" id="sty"><br>
+        <input type="submit" value="submit" id="sty">
+    </form>
+    <h6><a href="register">register</a></h6>
+    </div>
+</div>

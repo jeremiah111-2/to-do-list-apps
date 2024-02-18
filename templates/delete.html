@@ -1,0 +1,11 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'sty.css' %}">
+
+<div class="delete">
+    <h3>Are you sure to delete <br><h4>( {{posts}} )</h4></h3>
+    <form method="POST">
+        {% csrf_token %}
+        <a class="d1" href="/">cancel</a><a class="cancel"></a>
+        <input class="d2" type="submit" value="comfirm">
+    </form>
+</div>

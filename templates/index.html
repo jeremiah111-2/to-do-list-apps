@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'sty.css' %}">
+    <title>myapp</title>
+</head>
+<body>
+    
+    <section>
+        {% if user.is_authenticated %}
+        <div class="header">            
+            <h1>welcome {{user.username}}</h1>
+        </div>
+        {% else %}
+        <div class="header">
+            <h1>To do list app</h1>
+        </div>
+        {% endif %}
+        
+        {% if user.is_authenticated %}
+          <div class="app-row">
+            <div class="app">
+              <form method="POST">
+                <div class="form">
+                  {% csrf_token %}
+                  {{myform.message}}
+                  <input type="submit">
+                </div>
+              </form>
+
+                <div class="myapp">
+                  <div class="myapp-row">
+                    <h4>TO DO LIST APPS</h4>
+                  </div>
+                </div>
+
+                {% for pos in posts %}
+                <div class="myapp">
+                  <div class="myapp-row">
+                    <p1>Messages: {{pos.message}}</p1><br>
+                    <p1>Created_at: {{pos.create_at}}</p1><br>
+                    <span><a class="hh1" href="{% url 'update' pos.pk %}">update</a></span>
+                    <span><a class="pp1" href="{% url 'delete' pos.pk %}">delete</a></span>
+                  </div>
+                </div>
+                {% endfor %}
+                <h5><a href="logout">logout</a></h5>
+                {% else %}
+                <div class="app-row">
+                  <div class="app">
+                    <div class="form">
+                        {{myform.message}}
+                        <input type="submit">
+                    </div>
+      
+      
+                      <div class="myapp">
+                        <div class="myapp-row">
+                          <h4>TO DO LIST APPS</h4>
+                        </div>
+                      </div>
+              <div class="register-login">
+                <a href="login">login</a>
+                <a href="register">register</a>
+              </div>  
+              {% endif %}
+            </div>
+          </div>
+
+    </section>
+
+</body>
+</html>
